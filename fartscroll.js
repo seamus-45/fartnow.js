@@ -1,7 +1,7 @@
 // fartscroll.js v0.1
 "use strict";
 
-var fartscroll = (function () {
+var fartnow = (function () {
   var mp3 = {
     prefix: "data:audio/mp3;base64,",
     sound: [
@@ -34,28 +34,8 @@ var fartscroll = (function () {
       ]
   };
 
-  return function (trigger_distance) {
-    trigger_distance = trigger_distance || 400;
-    var lastOffset;
-
-    var scrollFart = function() {
-      var scrollOffset = Math.floor(window.scrollY / trigger_distance);
-      if (lastOffset !== scrollOffset) {
-        playAudio();
-        lastOffset = scrollOffset;
-      }
-    };
-
-    var timer;
-    function resizeFart() {
-      if (timer) {
-        clearTimeout(timer);
-      }
-      timer = setTimeout(function(){ playAudio(); }, 200);
-    };
-
-    window.addEventListener('scroll', scrollFart, false);
-    window.addEventListener('resize', resizeFart, false);
+  return function () {
+    playAudio();
   };
 
   function playAudio(position){
